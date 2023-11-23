@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('password', 180).nullable()
       table.string('access_token')
       table.string('remember_me_token').nullable()
+      table.integer('scope').defaultTo(1)
 
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL

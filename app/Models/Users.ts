@@ -2,8 +2,9 @@ import {DateTime} from 'luxon'
 import {column, BaseModel} from '@ioc:Adonis/Lucid/Orm'
 import {beforeSave} from "@adonisjs/lucid/build/src/Orm/Decorators";
 import Hash from "@ioc:Adonis/Core/Hash";
+import {UserScope} from "App/json/type/UserScope";
 
-export default class User extends BaseModel {
+export default class Users extends BaseModel {
   @column({isPrimary: true})
   public id: number
 
@@ -28,6 +29,9 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken: string | null
 
+  @column()
+  public scope: UserScope
+
   @column.dateTime({autoCreate: true})
   public createdAt: DateTime
 
@@ -35,9 +39,13 @@ export default class User extends BaseModel {
   public updatedAt: DateTime
 
   @beforeSave()
-  public static async hashPassword(User: User) {
+  public static async hashPassword(User: Users) {
     if (User.$dirty.password) {
       User.password = await Hash.make(User.password)
     }
   }
+}
+
+export function superAdmin(Users: Users) {
+  return (Users.scope == UserScope.SuperAdmin)
 }

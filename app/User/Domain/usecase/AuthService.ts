@@ -1,5 +1,5 @@
 import {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
-import User from "App/Models/User";
+import Users from "App/Models/Users";
 import SocialToken from "App/Models/SocialToken";
 import * as console from "console";
 
@@ -50,9 +50,10 @@ export default class AuthService {
         last_name: user.name.split(" ")[1] as string,
         email: user.email as string,
         access_token: token.token as any,
+        profile_pic: user.avatarUrl as string
       };
 
-      const newUser = await User.firstOrCreate(findUser, userDetails);
+      const newUser = await Users.firstOrCreate(findUser, userDetails);
 
       if (!newUser) {
         return response.json({
