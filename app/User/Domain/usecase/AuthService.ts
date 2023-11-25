@@ -68,7 +68,7 @@ export default class AuthService {
         .first();
 
       socialToken = socialToken ? socialToken : new SocialToken();
-      socialToken.user_id = newUser.id;
+      socialToken.user_id.id = newUser.id;
       socialToken.token = token.token;
       socialToken.type = token.type;
       socialToken.expiresAt = token.expiresAt!!.toString();

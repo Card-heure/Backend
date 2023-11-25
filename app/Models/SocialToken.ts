@@ -1,12 +1,13 @@
 import {DateTime} from 'luxon'
-import {BaseModel, column} from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, HasOne, column, hasOne} from '@ioc:Adonis/Lucid/Orm'
+import Users from "App/Models/Users";
 
 export default class SocialToken extends BaseModel {
   @column({isPrimary: true})
   public id: number
 
-  @column()
-  public user_id: number
+  @hasOne(() => Users)
+  public user_id: HasOne<typeof Users>
 
   @column()
   public token: string

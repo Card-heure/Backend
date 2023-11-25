@@ -1,8 +1,6 @@
 import Route from "@ioc:Adonis/Core/Route";
-import AuthService from "App/User/Domain/usecase/AuthService";
+import UsersController from "App/Controllers/Http/UsersController";
 
-export default function userRoutes() {
-  Route.get('/login', AuthService.login)
-  Route.get('/login-callback', AuthService.handleCallback)
-  Route.post('/logout', AuthService.logout)
+export default function profileRoutes() {
+  Route.get('/getAll', UsersController.getAll)
 }
