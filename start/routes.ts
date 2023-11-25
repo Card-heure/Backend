@@ -20,7 +20,9 @@
 
 import Route from "@ioc:Adonis/Core/Route";
 import authRoutes from "./routes/auth";
-import userRoutes from "./routes/user";
+import userRoutes from "./routes/api/user/user";
+import contactRoutes from "./routes/api/user/contact/contact";
+import contactRequestRoutes from "./routes/api/user/contact/request/contactRequest";
 
 Route.group(() => {
   Route.get("/", async ({response}) => {
@@ -31,6 +33,12 @@ Route.group(() => {
 
     Route.group(() => {
       userRoutes()
+      Route.group(() => {
+        contactRoutes()
+        Route.group(() => {
+          contactRequestRoutes()
+        }).prefix("request")
+      }).prefix("contact")
     }).prefix("user")
 
   }).middleware("auth:api")
