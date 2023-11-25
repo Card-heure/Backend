@@ -19,20 +19,21 @@
 */
 
 import Route from "@ioc:Adonis/Core/Route";
-import userRoutes from "./routes/auth";
-import profileRoutes from "./routes/user";
+import authRoutes from "./routes/auth";
+import userRoutes from "./routes/user";
 
 Route.group(() => {
   Route.get("/", async ({response}) => {
     return response.json("Working.");
   });
-  userRoutes()
-
+  authRoutes()
   Route.group(() => {
-    profileRoutes()
-  })
-    .prefix("user")
-    .middleware("auth:api")
+
+    Route.group(() => {
+      userRoutes()
+    }).prefix("user")
+
+  }).middleware("auth:api")
 })
 
 
