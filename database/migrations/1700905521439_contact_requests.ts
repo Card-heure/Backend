@@ -8,9 +8,11 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('request_from_user_id').unsigned().references('users.id').onDelete('CASCADE')
       table.integer('request_to_user_id').unsigned().references('users.id').onDelete('CASCADE')
-      table.tinyint('status')
+      table.tinyint('status').defaultTo(1)
       table.timestamp('created_at', {useTz: true})
       table.timestamp('updated_at', {useTz: true})
+
+      table.unique(['request_from_user_id', 'request_to_user_id'])
     })
   }
 

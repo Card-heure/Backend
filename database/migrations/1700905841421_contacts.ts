@@ -10,6 +10,8 @@ export default class extends BaseSchema {
       table.integer('with_user_id').unsigned().references('users.id').onDelete('CASCADE')
       table.integer('origin_request').unsigned().references('contact_requests.id').onDelete('CASCADE')
       table.timestamp('created_at', {useTz: true})
+
+      table.unique(['user_id', 'with_user_id'])
     })
   }
 
