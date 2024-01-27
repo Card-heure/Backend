@@ -7,6 +7,7 @@
 |
 */
 
-import router from "@adonisjs/core/services/router";
+import router from '@adonisjs/core/services/router'
 
-router.get("/", async () => "It works!");
+router.get('/', async ({ response }) => response.ok({ uptime: process.uptime() }))
+router.get('health', ({ response }) => response.noContent())

@@ -49,6 +49,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@adonisjs/ally": "^5.0.0-8",
+    "@adonisjs/auth": "^9.0.3",
     "@adonisjs/core": "^6.2.0",
     "@adonisjs/lucid": "^19.0.0-8",
     "luxon": "^3.4.4",
