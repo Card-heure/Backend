@@ -5,7 +5,7 @@ const allyConfig = defineConfig({
   google: services.google({
     clientId: env.get('GOOGLE_CLIENT_ID'),
     clientSecret: env.get('GOOGLE_CLIENT_SECRET'),
-    callbackUrl: '',
+    callbackUrl: 'http://127.0.0.1:8080/login-callback',
   }),
 })
 

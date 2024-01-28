@@ -4,6 +4,9 @@
     "rootDir": "./",
     "outDir": "./build",
     "paths": {
+      "#auth/*": [
+        "./app/auth/*.js"
+      ],
       "#controllers/*": [
         "./app/controllers/*.js"
       ],
