@@ -31,12 +31,19 @@ export default class SessionController {
       {
         fullName: googleUser.nickName,
         email: googleUser.email,
+        profilePic: googleUser.avatarUrl,
         accessToken: new Secret(googleUser.token.token),
         refreshToken: new Secret(googleUser.token.refreshToken!),
       }
     )
 
     await auth.use('web').login(user)
+
+    return response.redirect('/')
+  }
+
+  async destroy({ auth, response }: HttpContext) {
+    await auth.use('web').logout()
 
     return response.redirect('/')
   }

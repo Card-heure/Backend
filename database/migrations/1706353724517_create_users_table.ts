@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id').notNullable()
       table.string('full_name').nullable()
       table.string('email', 254).notNullable().unique()
+      table.text('profile_pic', 'longtext').notNullable()
       table.string('access_token').notNullable()
       table.string('refresh_token')
       table.string('google_id').notNullable()
