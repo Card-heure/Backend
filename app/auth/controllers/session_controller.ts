@@ -33,7 +33,6 @@ export default class SessionController {
         email: googleUser.email,
         profilePic: googleUser.avatarUrl,
         accessToken: new Secret(googleUser.token.token),
-        refreshToken: new Secret(googleUser.token.refreshToken!),
       }
     )
 

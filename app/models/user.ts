@@ -22,24 +22,21 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare profilePic: string
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
-
   @column({
     prepare: (accessToken: Secret<string>) => accessToken.release(),
     consume: (accessToken) => new Secret(accessToken),
   })
   declare accessToken: Secret<string>
 
-  @column({
-    prepare: (refreshToken: Secret<string>) => refreshToken.release(),
-    consume: (refreshToken) => new Secret(refreshToken),
-  })
-  declare refreshToken: Secret<string>
-
   @column()
   declare googleId: String
+
+  @column()
+  declare scope: number
+
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
 }
