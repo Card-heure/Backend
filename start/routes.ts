@@ -10,6 +10,7 @@
 import router from '@adonisjs/core/services/router'
 import userController from '#users/controllers/user_controller'
 import contactRequestController from '#contact_request/controllers/contact_requests_controller'
+import contactController from '#contact/controllers/contacts_controller'
 import { middleware } from '#start/kernel'
 
 const UserController = () => import('#users/controllers/user_controller')
@@ -38,6 +39,12 @@ router
     router.get('contact-requests/:id', ({ params }) =>
       contactRequestController.getContactRequestsById(params.id)
     )
+
+    // Contact routes
+    router.get('contact-requests/user/:id', ({ params }) =>
+      contactController.getContactsByUserId(params.id)
+    )
+    router.get('contact-requests/:id', ({ params }) => contactController.getContactsById(params.id))
   })
   .prefix('api')
   .middleware(middleware.auth())

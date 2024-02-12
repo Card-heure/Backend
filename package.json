@@ -16,6 +16,7 @@
   "imports": {
     "#users/*": "./app/users/*.js",
     "#contact_request/*": "./app/contact_requests/*.js",
+    "#contact/*": "./app/contacts/*.js",
     "#auth/*": "./app/auth/*.js",
     "#controllers/*": "./app/controllers/*.js",
     "#exceptions/*": "./app/exceptions/*.js",

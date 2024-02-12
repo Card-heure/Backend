@@ -10,6 +10,9 @@
       "#contact_request/*": [
         "./app/contact_requests/*.js"
       ],
+      "#contact/*": [
+        "./app/contacts/*.js"
+      ],
       "#auth/*": [
         "./app/auth/*.js"
       ],
