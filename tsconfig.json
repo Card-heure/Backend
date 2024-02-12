@@ -7,6 +7,9 @@
       "#users/*": [
         "./app/users/*.js"
       ],
+      "#contact_request/*": [
+        "./app/contact_requests/*.js"
+      ],
       "#auth/*": [
         "./app/auth/*.js"
       ],
