@@ -41,10 +41,10 @@ router
     )
 
     // Contact routes
-    router.get('contact-requests/user/:id', ({ params }) =>
+    router.get('contacts/user/:id', ({ params }) =>
       contactController.getContactsByUserId(params.id)
     )
-    router.get('contact-requests/:id', ({ params }) => contactController.getContactsById(params.id))
+    router.get('contacts/:id', ({ params }) => contactController.getContactsById(params.id))
   })
   .prefix('api')
   .middleware(middleware.auth())
