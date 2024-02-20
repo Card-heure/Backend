@@ -1,11 +1,35 @@
-import db from '@adonisjs/lucid/services/db'
+import ContactRequest from '#models/contact_request'
 
 export default class GetContactRequests {
   static getContactRequestsByUserId(userId: number) {
-    return db.from('contact_requests').where('from_user_id', userId).select('*')
+    return ContactRequest.findBy('fromUserId', userId)
   }
 
   static getContactRequestsById(id: number) {
-    return db.from('contact_requests').where('id', id).select('*')
+    return ContactRequest.find(id)
+  }
+
+  static async createContactRequest(fromUserId: number, toUserId: number) {
+    return await ContactRequest.create({
+      fromUserId: fromUserId,
+      toUserId: toUserId,
+    })
+  }
+
+  static async updateContactRequest(id: number, status: number) {
+    const contactRequest = await ContactRequest.find(id)
+    if (!contactRequest) {
+      throw new Error('Contact request not found')
+    }
+    contactRequest.status = status
+    return await contactRequest.save()
+  }
+
+  static async deleteContactRequest(id: number) {
+    const contactRequest = await ContactRequest.find(id)
+    if (!contactRequest) {
+      throw new Error('Contact request not found')
+    }
+    return await contactRequest.delete()
   }
 }

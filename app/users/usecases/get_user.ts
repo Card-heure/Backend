@@ -1,11 +1,11 @@
 import db from '@adonisjs/lucid/services/db'
 
 export default class GetUser {
-  static getUser(id?: number) {
+  static async getUser(id?: number) {
     if (id) {
-      return db.from('users').where('id', id).first()
+      return await db.from('users').where('id', id).first()
     } else {
-      return db.from('users').select('*')
+      return await db.from('users').select('*')
     }
   }
 }

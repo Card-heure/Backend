@@ -14,6 +14,8 @@
     "typecheck": "tsc --noEmit"
   },
   "imports": {
+    "#enums/*": "./app/utils/enums/*.js",
+    "#types/*": "./app/utils/types/*.js",
     "#users/*": "./app/users/*.js",
     "#contact_request/*": "./app/contact_requests/*.js",
     "#contact/*": "./app/contacts/*.js",
@@ -40,6 +42,7 @@
     "@adonisjs/eslint-config": "^1.2.1",
     "@adonisjs/prettier-config": "^1.2.1",
     "@adonisjs/tsconfig": "^1.2.1",
+    "@japa/api-client": "^2.0.2",
     "@japa/assert": "^2.1.0",
     "@japa/plugin-adonisjs": "^3.0.0",
     "@japa/runner": "^3.1.1",
@@ -56,7 +59,7 @@
     "@adonisjs/ally": "^5.0.0-8",
     "@adonisjs/auth": "^9.0.3",
     "@adonisjs/core": "^6.2.0",
-    "@adonisjs/lucid": "^19.0.0-8",
+    "@adonisjs/lucid": "^20.1.0",
     "@adonisjs/session": "^7.1.1",
     "luxon": "^3.4.4",
     "pg": "^8.11.3",

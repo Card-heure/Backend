@@ -13,8 +13,6 @@ import contactRequestController from '#contact_request/controllers/contact_reque
 import contactController from '#contact/controllers/contacts_controller'
 import { middleware } from '#start/kernel'
 
-const UserController = () => import('#users/controllers/user_controller')
-
 const SessionController = () => import('#auth/controllers/session_controller')
 
 router.get('/', async ({ response }) => response.ok({ uptime: process.uptime() }))
@@ -30,7 +28,7 @@ router
   .group(() => {
     // User routes
     router.get('user/:id', ({ params }) => userController.getUser(params.id))
-    router.get('users', [UserController, 'getUsers'])
+    router.get('users', userController.getUsers)
 
     // Contact request routes
     router.get('contact-requests/user/:id', ({ params }) =>

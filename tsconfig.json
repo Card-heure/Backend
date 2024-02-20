@@ -4,6 +4,12 @@
     "rootDir": "./",
     "outDir": "./build",
     "paths": {
+      "#enums/*": [
+        "./app/utils/emus/*.js"
+      ],
+      "#types/*": [
+        "./app/utils/types/*.js"
+      ],
       "#users/*": [
         "./app/users/*.js"
       ],

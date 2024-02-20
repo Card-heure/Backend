@@ -5,7 +5,7 @@ export default class UserController {
     return GetUser.getUser(id)
   }
 
-  getUsers() {
+  static getUsers() {
     return GetUser.getUser()
   }
 }
