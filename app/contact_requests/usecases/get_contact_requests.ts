@@ -5,6 +5,10 @@ export default class GetContactRequests {
     return ContactRequest.findBy('fromUserId', userId)
   }
 
+  static getContactRequestsByToUserId(userId: number) {
+    return ContactRequest.findBy('toUserId', userId)
+  }
+
   static getContactRequestsById(id: number) {
     return ContactRequest.find(id)
   }

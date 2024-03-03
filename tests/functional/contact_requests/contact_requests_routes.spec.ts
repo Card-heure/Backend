@@ -30,7 +30,16 @@ test.group('contact request', (group) => {
 
   test('Get contact requests from user id', async ({ assert }) => {
     // Get all contact requests
-    assert.containsSubset(await ContactRequestsController.getContactRequestsByUserId(John.id), {
+    assert.containsSubset(await ContactRequestsController.getContactRequestsFromUserId(John.id), {
+      id: contactRequest.id,
+      fromUserId: John.id,
+      toUserId: Jean.id,
+    })
+  })
+
+  test('Get contact requests to user id', async ({ assert }) => {
+    // Get all contact requests
+    assert.containsSubset(await ContactRequestsController.getContactRequestsToUserId(John.id), {
       id: contactRequest.id,
       fromUserId: John.id,
       toUserId: Jean.id,

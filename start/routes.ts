@@ -31,8 +31,11 @@ router
     router.get('users', userController.getUsers)
 
     // Contact request routes
-    router.get('contact-requests/user/:id', ({ params }) =>
-      contactRequestController.getContactRequestsByUserId(params.id)
+    router.get('contact-requests/fromUser/:id', ({ params }) =>
+      contactRequestController.getContactRequestsFromUserId(params.id)
+    )
+    router.get('contact-requests/toUser/:id', ({ params }) =>
+      contactRequestController.getContactRequestsToUserId(params.id)
     )
     router.get('contact-requests/:id', ({ params }) =>
       contactRequestController.getContactRequestsById(params.id)

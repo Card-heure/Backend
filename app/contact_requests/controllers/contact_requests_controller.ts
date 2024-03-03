@@ -1,7 +1,10 @@
 import GetContactRequests from '#contact_request/usecases/get_contact_requests'
 
 export default class ContactRequestsController {
-  static async getContactRequestsByUserId(userId: number) {
+  static async getContactRequestsFromUserId(userId: number) {
+    return GetContactRequests.getContactRequestsByUserId(userId)
+  }
+  static async getContactRequestsToUserId(userId: number) {
     return GetContactRequests.getContactRequestsByUserId(userId)
   }
 
