@@ -8,12 +8,11 @@ export default class extends BaseSchema {
       table.increments('id').notNullable()
       table.string('full_name').nullable()
       table.string('email').notNullable().unique()
-      table.text('profile_pic', 'longtext').notNullable()
-      table.string('access_token').notNullable()
-      table.string('google_id').notNullable()
+      table.string('password').notNullable()
+      table.text('profile_pic', 'longtext').nullable()
       table.tinyint('scope').notNullable().defaultTo(1)
-      table.timestamp('created_at').notNullable()
-      table.timestamp('updated_at').nullable()
+      table.timestamp('created_at').notNullable().defaultTo(this.now())
+      table.timestamp('updated_at').nullable().defaultTo(this.now())
     })
   }
 

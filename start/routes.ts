@@ -13,15 +13,26 @@ import contactRequestController from '#contact_request/controllers/contact_reque
 import contactController from '#contact/controllers/contacts_controller'
 import { middleware } from '#start/kernel'
 
-const SessionController = () => import('#auth/controllers/session_controller')
+const AuthController = () => import('#auth/controllers/auth_controller')
 
 router.get('/', async ({ response }) => response.ok({ uptime: process.uptime() }))
 router.get('health', ({ response }) => response.noContent())
 
 // Auth routes
-router.get('login', [SessionController, 'create'])
-router.get('login-callback', [SessionController, 'store'])
-router.delete('logout', [SessionController, 'destroy'])
+router.post('register', [AuthController, 'signin'])
+router.post('login', [AuthController, 'login'])
+router.delete('logout', [AuthController, 'logout'])
+
+router
+  .get('me', async ({ auth, response }) => {
+    try {
+      const user = auth.getUserOrFail()
+      return response.ok(user)
+    } catch (error) {
+      return response.unauthorized({ error: 'User not found' })
+    }
+  })
+  .use(middleware.auth())
 
 //API routes (protected by auth middleware)
 router
