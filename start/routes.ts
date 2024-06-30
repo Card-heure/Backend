@@ -12,6 +12,7 @@ import userController from '#users/controllers/user_controller'
 import contactRequestController from '#contact_request/controllers/contact_requests_controller'
 import contactController from '#contact/controllers/contacts_controller'
 import { middleware } from '#start/kernel'
+import SubjectsController from '../app/subjects/controllers/subjects_controller.js'
 
 const AuthController = () => import('#auth/controllers/auth_controller')
 
@@ -57,6 +58,11 @@ router
       contactController.getContactsByUserId(params.id)
     )
     router.get('contacts/:id', ({ params }) => contactController.getContactsById(params.id))
+
+    //subject routes
+    router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
+    router.get('subject/:id', ({ params }) => SubjectsController.getSubjectsById(params.id))
+    router.post('subject', ({ auth, request }) => SubjectsController.CreateSubject(auth, request))
   })
   .prefix('api')
   .middleware(middleware.auth())
