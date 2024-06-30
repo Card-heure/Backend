@@ -62,6 +62,7 @@ router
     //subject routes
     router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
     router.get('subject/:id', ({ params }) => SubjectsController.getSubjectsById(params.id))
+    // @ts-ignore
     router.post('subject', ({ auth, request }) => SubjectsController.CreateSubject(auth, request))
   })
   .prefix('api')

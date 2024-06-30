@@ -16,13 +16,9 @@ export default class AuthController {
   }
 
   async signin({ request, response }: HttpContext) {
-    console.log('signin')
-    console.log(request.body())
     const payload = await request.validateUsing(registerValidator)
-    console.log(payload)
 
     const user = await User.create(payload)
-    console.log(user)
 
     return response.created(user)
   }
