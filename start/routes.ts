@@ -9,7 +9,6 @@
 
 import router from '@adonisjs/core/services/router'
 import userController from '#users/controllers/user_controller'
-import contactRequestController from '#contact_request/controllers/contact_requests_controller'
 import { middleware } from '#start/kernel'
 import SubjectsController from '../app/subjects/controllers/subjects_controller.js'
 
@@ -40,17 +39,6 @@ router
     // User routes
     router.get('user/:id', ({ params }) => userController.getUser(params.id))
     router.get('users', userController.getUsers)
-
-    // Contact request routes
-    router.get('contact-requests/fromUser/:id', ({ params }) =>
-      contactRequestController.getContactRequestsFromUserId(params.id)
-    )
-    router.get('contact-requests/toUser/:id', ({ params }) =>
-      contactRequestController.getContactRequestsToUserId(params.id)
-    )
-    router.get('contact-requests/:id', ({ params }) =>
-      contactRequestController.getContactRequestsById(params.id)
-    )
     //subject routes
     router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
     router.get('subject/:id', ({ params }) => SubjectsController.getSubjectsById(params.id))
