@@ -6,6 +6,6 @@ export default class GetSubjects {
   }
 
   static async getSubjectsById(id: number) {
-    return db.from('subjects').where('id', id).select('*')
+    return db.from('subjects').where('id', id).select('*').first()
   }
 }
