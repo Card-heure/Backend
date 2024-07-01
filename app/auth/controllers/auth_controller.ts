@@ -39,4 +39,17 @@ export default class AuthController {
 
     return response.ok({ message: 'Logged out' })
   }
+  async deleteAccount({ auth, response }: HttpContext) {
+    const user = auth.user!
+    const token = auth.user?.currentAccessToken.identifier
+
+    if (!token) {
+      return response.badRequest({ message: 'Token not found' })
+    }
+
+    await User.accessTokens.delete(user, token)
+    await user.delete()
+
+    return response.ok({ message: 'Account deleted' })
+  }
 }

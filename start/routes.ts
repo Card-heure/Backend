@@ -22,6 +22,7 @@ router.get('health', ({ response }) => response.noContent())
 router.post('register', [AuthController, 'register'])
 router.post('login', [AuthController, 'login'])
 router.delete('logout', [AuthController, 'logout'])
+router.delete('deleteAccount', [AuthController, 'deleteAccount'])
 
 router
   .get('me', async ({ auth, response }) => {
