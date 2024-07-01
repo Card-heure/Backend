@@ -19,7 +19,7 @@ router.get('/', async ({ response }) => response.ok({ uptime: process.uptime() }
 router.get('health', ({ response }) => response.noContent())
 
 // Auth routes
-router.post('register', [AuthController, 'signin'])
+router.post('register', [AuthController, 'register'])
 router.post('login', [AuthController, 'login'])
 router.delete('logout', [AuthController, 'logout'])
 

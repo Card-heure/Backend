@@ -15,12 +15,16 @@ export default class AuthController {
     })
   }
 
-  async signin({ request, response }: HttpContext) {
+  async register({ request, response }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
     const user = await User.create(payload)
+    const token = await User.accessTokens.create(user)
 
-    return response.created(user)
+    return response.ok({
+      token: token,
+      ...user.serialize(),
+    })
   }
 
   async logout({ auth, response }: HttpContext) {
