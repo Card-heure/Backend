@@ -2,22 +2,35 @@ import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import User from '#models/user'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import Subject from '#models/subject'
 
-export default class Contact extends BaseModel {
+export default class Card extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare fromUserId: number
+  declare creatorId: number
 
   @belongsTo(() => User)
-  declare fromUser: BelongsTo<typeof User>
+  declare creator: BelongsTo<typeof User>
 
   @column()
-  declare toUserId: number
+  declare title: string
 
-  @belongsTo(() => User)
-  declare toUser: BelongsTo<typeof User>
+  @column()
+  declare content: JSON
+
+  @column()
+  declare status: number
+
+  @column()
+  declare content_type: number
+
+  @column()
+  declare subjectId: number
+
+  @belongsTo(() => Subject)
+  declare subject: BelongsTo<typeof Subject>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

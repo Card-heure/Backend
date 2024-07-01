@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table
-        .integer('user_id')
+        .integer('creator_id')
         .unsigned()
         .references('id')
         .inTable('users')
@@ -16,15 +16,16 @@ export default class extends BaseSchema {
       table.string('title').notNullable()
       table.json('content').notNullable()
       table.tinyint('status').defaultTo(0).notNullable()
+      table.integer('content_type').notNullable()
       table
-        .integer('content_type_id')
+        .integer('subject_id')
         .unsigned()
         .references('id')
-        .inTable('content_types')
+        .inTable('subjects')
         .onDelete('CASCADE')
         .notNullable()
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('created_at').notNullable().defaultTo(this.now())
+      table.timestamp('updated_at').nullable().defaultTo(this.now())
     })
   }
 

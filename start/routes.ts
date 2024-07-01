@@ -11,6 +11,7 @@ import router from '@adonisjs/core/services/router'
 import userController from '#users/controllers/user_controller'
 import { middleware } from '#start/kernel'
 import SubjectsController from '../app/subjects/controllers/subjects_controller.js'
+import CardsController from '../app/cards/controllers/cards_controller.js'
 
 const AuthController = () => import('#auth/controllers/auth_controller')
 
@@ -39,11 +40,17 @@ router
     // User routes
     router.get('user/:id', ({ params }) => userController.getUser(params.id))
     router.get('users', userController.getUsers)
+
     //subject routes
     router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
     router.get('subject/:id', ({ params }) => SubjectsController.getSubjectsById(params.id))
-    // @ts-ignore
     router.post('subject', ({ auth, request }) => SubjectsController.CreateSubject(auth, request))
+
+    //Card routes
+    router.post('card', ({ auth, request }) => CardsController.CreateCards(auth, request))
+    router.get('cards', ({ auth }) => CardsController.GetCardsByUserId(auth))
+    router.get('card/:id', ({ params }) => CardsController.GetCardById(params.id))
+    router.get('cards/subject/:id', ({ params }) => CardsController.GetCardsBySubjectId(params.id))
   })
   .prefix('api')
   .middleware(middleware.auth())
