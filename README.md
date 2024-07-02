@@ -6,6 +6,7 @@ ___
 - `cd Backend`,
 - `npm install`,
 - `docker-compose up -d`,
+- `cp .env.example .env`
 - `node ace migration:run`,
 - `node ace serve`
 ___
