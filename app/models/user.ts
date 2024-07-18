@@ -4,6 +4,7 @@ import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import { EGender } from '#models/enums/EGender'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -18,16 +19,25 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare fullName: string
 
   @column()
+  declare firstName: string | null
+
+  @column()
+  declare lastName: string | null
+
+  @column()
   declare email: string
 
   @column({ serializeAs: null })
   declare password: string
 
   @column()
-  declare profilePic: string | null
+  declare gender: EGender
 
   @column()
   declare scope: number
+
+  @column()
+  declare birthDate: Date | null
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
