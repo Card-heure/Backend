@@ -40,6 +40,7 @@ router
   .group(() => {
     // User routes
     router.get('user/:id', ({ params }) => userController.getUser(params.id))
+    router.delete('user/:id', ({ params }) => userController.deleteUser(params.id))
     router.get('users', userController.getUsers)
 
     //subject routes
