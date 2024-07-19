@@ -39,8 +39,10 @@ router
 router
   .group(() => {
     // User routes
-    router.get('user/:id', ({ params }) => userController.getUser(params.id))
     router.get('users', userController.getUsers)
+    router.get('user/:id', ({ params }) => userController.getUser(params.id))
+    router.put('user/:id', ({ params, request }) => userController.updateUser(params.id, request))
+    router.delete('user/:id', ({ params }) => userController.deleteUser(params.id))
 
     //subject routes
     router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
