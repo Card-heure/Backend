@@ -18,3 +18,7 @@ export interface TCreateCard {
   content_type: number
   subject_id: number
 }
+export interface TUpdateCard {
+  title: string
+  content: JSON
+}

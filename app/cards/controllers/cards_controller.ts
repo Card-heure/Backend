@@ -2,25 +2,38 @@
 
 import { Authenticator } from '@adonisjs/auth'
 import { Authenticators } from '@adonisjs/auth/types'
-import { TCreateCard } from '#models/types/TCard'
+import { TCreateCard, TUpdateCard } from '#models/types/TCard'
 import CreateCard from '../usecases/create_card.js'
 import GetCard from '../usecases/get_card.js'
 import DeleteCard from '../usecases/delete_card.js'
+import UpdateCard from '../usecases/update_card.js'
 
 export default class CardsController {
   static async GetCardsByUserId(auth: Authenticator<Authenticators>) {
     const userId = auth.user!.id
     return GetCard.getCardsByUserId(userId)
   }
+
   static async GetCardById(id: number) {
     return GetCard.getCardsById(id)
   }
+
   static async GetCardsBySubjectId(subjectId: number) {
     return GetCard.getCardsBySubjectId(subjectId)
   }
+
   static async DeleteCard(id: number) {
     return DeleteCard.deleteCard(id)
   }
+
+  static async UpdateCard(id: number, request: Request) {
+    const updatedCard: TUpdateCard = {
+      title: request.body().title,
+      content: request.body().content,
+    }
+    return UpdateCard.updateCard(id, updatedCard)
+  }
+
   static async CreateCards(auth: Authenticator<Authenticators>, request: Request) {
     const userId = auth.user!.id
     const createCard = request.body() as TCreateCard
