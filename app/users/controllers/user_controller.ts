@@ -16,13 +16,13 @@ export default class UserController {
     return DeleteUser.deleteUser(id)
   }
   static updateUser(id: number, request: Request) {
-    const dataRequest = request.body() as TUpdateUser
+    const dataRequest = request.body()
     const updateUser: TUpdateUser = {
-      full_name: dataRequest.full_name,
-      first_name: dataRequest.first_name,
-      last_name: dataRequest.last_name,
+      full_name: dataRequest.fullName,
+      first_name: dataRequest.firstName,
+      last_name: dataRequest.lastName,
       email: dataRequest.email,
-      birth_date: dataRequest.birth_date,
+      birth_date: dataRequest.birthDate,
       gender: dataRequest.gender,
     }
     return UpdateUser.updateUser(id, updateUser)
