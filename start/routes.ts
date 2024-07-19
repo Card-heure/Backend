@@ -51,10 +51,11 @@ router
     router.post('subject', ({ auth, request }) => SubjectsController.CreateSubject(auth, request))
 
     //Card routes
-    router.post('card', ({ auth, request }) => CardsController.CreateCards(auth, request))
     router.get('cards', ({ auth }) => CardsController.GetCardsByUserId(auth))
     router.get('card/:id', ({ params }) => CardsController.GetCardById(params.id))
     router.get('cards/subject/:id', ({ params }) => CardsController.GetCardsBySubjectId(params.id))
+    router.delete('card/:id', ({ params }) => CardsController.DeleteCard(params.id))
+    router.post('card', ({ auth, request }) => CardsController.CreateCards(auth, request))
   })
   .prefix('api')
   .middleware(middleware.auth())
