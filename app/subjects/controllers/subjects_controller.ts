@@ -3,6 +3,7 @@ import { Authenticator } from '@adonisjs/auth'
 import { Authenticators } from '@adonisjs/auth/types'
 import CreateSubjects from '../usecases/create_subjects.js'
 import { TCreateSubject } from '#models/types/TSubject'
+import DeleteSubject from '../usecases/delete_subject.js'
 
 export default class SubjectsController {
   static async getSubjectsByUserId(auth: Authenticator<Authenticators>) {
@@ -12,6 +13,10 @@ export default class SubjectsController {
 
   static async getSubjectsById(id: number) {
     return GetSubjects.getSubjectsById(id)
+  }
+
+  static async DeleteSubject(id: number) {
+    return DeleteSubject.deleteSubject(id)
   }
 
   static async CreateSubject(auth: Authenticator<Authenticators>, request: Request) {

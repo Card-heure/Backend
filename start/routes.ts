@@ -47,6 +47,7 @@ router
     //subject routes
     router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
     router.get('subject/:id', ({ params }) => SubjectsController.getSubjectsById(params.id))
+    router.delete('subject/:id', ({ params }) => SubjectsController.DeleteSubject(params.id))
     router.post('subject', ({ auth, request }) => SubjectsController.CreateSubject(auth, request))
 
     //Card routes
