@@ -48,6 +48,9 @@ router
     router.get('subjects', ({ auth }) => SubjectsController.getSubjectsByUserId(auth))
     router.get('subject/:id', ({ params }) => SubjectsController.getSubjectsById(params.id))
     router.delete('subject/:id', ({ params }) => SubjectsController.DeleteSubject(params.id))
+    router.put('subject/:id', ({ params, request }) =>
+      SubjectsController.UpdateSubject(params.id, request)
+    )
     router.post('subject', ({ auth, request }) => SubjectsController.CreateSubject(auth, request))
 
     //Card routes
@@ -55,6 +58,7 @@ router
     router.get('card/:id', ({ params }) => CardsController.GetCardById(params.id))
     router.get('cards/subject/:id', ({ params }) => CardsController.GetCardsBySubjectId(params.id))
     router.delete('card/:id', ({ params }) => CardsController.DeleteCard(params.id))
+    router.put('card/:id', ({ params, request }) => CardsController.UpdateCard(params.id, request))
     router.post('card', ({ auth, request }) => CardsController.CreateCards(auth, request))
   })
   .prefix('api')

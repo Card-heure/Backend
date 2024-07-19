@@ -10,3 +10,6 @@ export interface TCreateSubject {
   creator_id: number
   name: string
 }
+export interface TUpdateSubject {
+  name: string
+}
